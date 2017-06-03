@@ -1,0 +1,7 @@
+[package]
+name = "work_time"
+version = "0.1.0"
+authors = ["anton"]
+
+[dependencies]
+sqlite="*"
