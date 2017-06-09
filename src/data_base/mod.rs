@@ -66,9 +66,9 @@ pub fn create(file_path: &str) -> SQLiteResult<()> {
     let connection = try!(sqlite::open(file_path));
 
     let sql_commands = "\
-    CREATE TABLE users (name TEXT, age INTEGER);\
-    CREATE TABLE users2 (name TEXT, age INTEGER);\
-    CREATE TABLE users3 (name TEXT, age INTEGER);\
+    CREATE TABLE worked_time (id INTEGER, enter_time DOUBLE, leave_time DOUBLE, table_name_inuse TEXT);\
+    CREATE TABLE holiday_time (id INTEGER, free_time DOUBLE, table_name_inuse TEXT);\
+    CREATE TABLE docs (id INTEGER, general_director_name TEXT, head_of_department_name TEXT, responsible_for_attendance TEXT, my_name TEXT, body_text TEXT);\
     ";
 
     connection.execute(sql_commands).unwrap();
