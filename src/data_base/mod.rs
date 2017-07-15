@@ -66,10 +66,24 @@ pub fn create(file_path: &str) -> SQLiteResult<()> {
     let connection = try!(sqlite::open(file_path));
 
     let sql_commands = "\
-    CREATE TABLE worked_time (id INTEGER, enter_time DOUBLE, leave_time DOUBLE, table_name_inuse TEXT);\
-    CREATE TABLE holiday_time (id INTEGER, free_time DOUBLE, table_name_inuse TEXT);\
-    CREATE TABLE docs (id INTEGER, general_director_name TEXT, head_of_department_name TEXT, responsible_for_attendance TEXT, my_name TEXT, body_text TEXT);\
-    ";
+        \
+        CREATE TABLE `holiday_time` (\
+            `id`	        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\
+            `total_time`	DOUBLE,\
+            `array_used`	INTEGER NOT NULL\
+        );\
+        \
+        \
+        CREATE TABLE `worked_time` (\
+            `ID`	        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\
+            `enter_time`	DOUBLE,\
+            `leave_time`	DOUBLE,\
+            `array_used`	INTEGER NOT NULL\
+        );\
+        \
+        \
+        CREATE TABLE docs (id INTEGER, general_director_name TEXT, head_of_department_name TEXT, responsible_for_attendance TEXT, my_name TEXT, body_text TEXT);\
+        ";
 
     connection.execute(sql_commands).unwrap();
 
